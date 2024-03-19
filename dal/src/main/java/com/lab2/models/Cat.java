@@ -2,11 +2,10 @@ package com.lab2.models;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.Hibernate;
 import org.hibernate.annotations.GenericGenerator;
 
-import java.util.Date;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
 @Getter
 @Setter
@@ -36,7 +35,7 @@ public class Cat {
     @JoinTable(
             name = "cat_friends",
             joinColumns = @JoinColumn(name = "first_cat_id"),
-            inverseJoinColumns = @JoinColumn(name = "second_cat_id", referencedColumnName = "id")
+            inverseJoinColumns = @JoinColumn(name = "second_cat_id")
     )
-    private Set<Cat> friends;
+    private List<Cat> friends = new ArrayList<>();
 }

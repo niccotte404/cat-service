@@ -4,9 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
-import java.util.Date;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
 @Getter
 @Setter
@@ -20,8 +18,9 @@ public class Owner {
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "org.hibernate.id.UUIDGenerator")
     private UUID id;
+    private String name;
     private Date birthday;
 
     @OneToMany(mappedBy = "owner")
-    private Set<Cat> cats;
+    private List<Cat> cats = new ArrayList<>();
 }

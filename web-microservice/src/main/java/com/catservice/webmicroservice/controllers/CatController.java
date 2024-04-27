@@ -31,7 +31,7 @@ public class CatController {
         this.ownerService = ownerService;
     }
 
-    @PutMapping("update/{username}/{catId}")
+    @PutMapping("{username}/{catId}")
     @PreAuthorize("hasAnyAuthority('USER', 'ADMIN')")
     public ResponseEntity<String> updateCat(
             @RequestBody CatDto catDto, @PathVariable("username") String username,
@@ -46,7 +46,7 @@ public class CatController {
         return new ResponseEntity<>("Cat was updated successfully", HttpStatus.OK);
     }
 
-    @PostMapping("add/{username}/{catId}")
+    @PostMapping("{username}/{catId}")
     @PreAuthorize("hasAnyAuthority('USER', 'ADMIN')")
     public ResponseEntity<String> addCat(
             @RequestBody CatDto catDto, @PathVariable("username") String username,
@@ -61,8 +61,9 @@ public class CatController {
         return new ResponseEntity<>("Cat was updated successfully", HttpStatus.OK);
     }
 
-    @DeleteMapping("delete/{username}/{catId}")
-    public ResponseEntity<String> addOwner(
+    @DeleteMapping("{username}/{catId}")
+    @PreAuthorize("hasAnyAuthority('USER', 'ADMIN')")
+    public ResponseEntity<String> deleteOwner(
             @PathVariable("username") String username, @PathVariable("catId") UUID catId
     ){
 

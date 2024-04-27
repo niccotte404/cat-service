@@ -22,7 +22,7 @@ public class OwnerController {
         this.userService = userService;
     }
 
-    @PutMapping("update/{username}")
+    @PutMapping("{username}")
     @PreAuthorize("hasAnyAuthority('USER', 'ADMIN')")
     public ResponseEntity<String> updateOwner(
             @RequestBody OwnerDto ownerDto, @PathVariable("username") String username){
@@ -35,7 +35,7 @@ public class OwnerController {
         return new ResponseEntity<>("Owner was updated successfully", HttpStatus.OK);
     }
 
-    @PostMapping("add/{username}")
+    @PostMapping("{username}")
     @PreAuthorize("hasAnyAuthority('USER', 'ADMIN')")
     public ResponseEntity<String> addOwner(
             @RequestBody OwnerDto ownerDto, @PathVariable("username") String username){
@@ -48,7 +48,7 @@ public class OwnerController {
         return new ResponseEntity<>("Owner was added successfully", HttpStatus.OK);
     }
 
-    @DeleteMapping("delete/{username}")
+    @DeleteMapping("{username}")
     @PreAuthorize("hasAnyAuthority('USER', 'ADMIN')")
     public ResponseEntity<String> deleteOwner(@PathVariable("username") String username){
 
